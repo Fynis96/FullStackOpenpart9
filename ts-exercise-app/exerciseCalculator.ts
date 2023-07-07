@@ -10,16 +10,16 @@ interface Result {
 
 interface parsedValues {
   value1: number[];
-  value2: number;
+  value2: number | undefined;
 }
 
 //args[0] && args[1] aren't needed. args[args.length - 1] is the target number
 const parseArgument = (args: string[]): parsedValues => {
-  const arguments: string[] = [...args];
-  const slicedArg: string[] = arguments.slice(2);
+  const copyOfArgs: string[] = [...args];
+  const slicedArg: string[] = copyOfArgs.slice(2);
   const numArgs: number[] = slicedArg.map(a => Number(a))
 
-  const value2: number = numArgs.pop();
+  const value2: number | undefined = numArgs.pop();
   const value1: number[] = [...numArgs];
 
   return {
@@ -28,11 +28,11 @@ const parseArgument = (args: string[]): parsedValues => {
   };
 }
 
-const exerciseCalculator = (exerciseAmounts: number[], target: number): Result => {
+const exerciseCalculator = (exerciseAmounts: number[], target: number | undefined): Result => {
   const periodLength = exerciseAmounts.length;
   const trainingDays = exerciseAmounts.filter(a => a > 0).length;
   const average = exerciseAmounts.reduce((p, c) => p + c, 0) / periodLength;
-  const targetNumber = target;
+  const targetNumber = target ?? 1;
   const success = average >= targetNumber ? true : false;
   const rating = success == true ? 3 : success == false && average + 1 < targetNumber ? 2 : 1;
   const ratingDescription = rating == 3 ? 'Perfect' : rating == 2 ? 'Could be better' : 'Needs improvement!';
