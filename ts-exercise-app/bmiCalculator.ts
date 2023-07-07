@@ -17,7 +17,7 @@ const parseArguments = (args: string[]): inputValues => {
   }
 }
 
-const calculateBmi = (weight: number, height: number) => {
+export const calculateBmi = (weight: number, height: number) => {
   const value: number = weight / ((height / 100) ** 2);
   if (value <= 18.4) {
     return 'Underweight (Unhealthy)';
