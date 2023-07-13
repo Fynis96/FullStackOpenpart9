@@ -1,0 +1,36 @@
+export interface DiaryEntry {
+  id: number;
+  date: string;
+  weather: Weather | string;
+  visibility: Visibility | string;
+  comment?: string;
+}
+
+export enum Weather {
+  Sunny = 'sunny',
+  Rainy = 'rainy',
+  Cloudy = 'cloudy',
+  Stormy = 'stormy',
+  Windy = 'windy',
+}
+
+export enum Visibility {
+  Great = 'great',
+  Good = 'good',
+  Ok = 'ok',
+  Poor = 'poor',
+}
+
+export interface DiaryProps {
+  setDiaries: React.Dispatch<React.SetStateAction<DiaryEntry[]>>;
+  diaries: DiaryEntry[];
+  setMessage: React.Dispatch<React.SetStateAction<string>>;
+}
+
+export interface NotificationProps {
+  message: string;
+}
+
+export type NonSensitiveDiaryEntry = Omit<DiaryEntry, 'comment'>;
+
+export type NewDiaryEntry = Omit<DiaryEntry, 'id'>;
