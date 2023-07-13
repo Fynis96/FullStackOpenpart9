@@ -1,7 +1,7 @@
 import {NotificationProps} from '../types'
 
 const Notification = (props: NotificationProps) => {
-  if (props.message === null) {
+  if (props.message === null || props.message === '') {
     return <div></div>
   }
 
