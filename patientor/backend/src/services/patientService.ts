@@ -16,6 +16,11 @@ const getNonConfidentialPatientInfo = (): NonConfidentialPatientInfo[] => {
   }));
 };
 
+const findById = (id: string): Patient | undefined => {
+  const patient = patients.find(p => p.id === id);
+  return patient;
+};
+
 const addPatient = ( patient: NewPatient ): Patient => {
   const id = uuid();
   const newPatient = {
@@ -30,5 +35,6 @@ const addPatient = ( patient: NewPatient ): Patient => {
 export default {
   getPatients,
   getNonConfidentialPatientInfo,
-  addPatient
+  addPatient,
+  findById
 };
