@@ -9,6 +9,7 @@ const PatientView = () => {
   const { id } = useParams<{ id: string }>();
   const [patient, setPatient] = useState<Patient | null>(null);
 
+  //TODO: Move axios call into services/patients.ts
   useEffect(() => {
     const fetchPatient = async () => {
       try {
