@@ -1,4 +1,4 @@
-import { NewPatient, Gender } from "./types";
+import { NewPatient, Gender, Entry } from "./types";
 
 
 const toNewPatient = (object: unknown): NewPatient => {
@@ -6,14 +6,14 @@ const toNewPatient = (object: unknown): NewPatient => {
     throw new Error('Incorrect or missing data');
   }
 
-  if ('name' in object && 'dateOfBirth' in object && 'ssn' in object && 'gender' in object && 'occupation' in object) {
+  if ('name' in object && 'dateOfBirth' in object && 'ssn' in object && 'gender' in object && 'occupation' in object && 'entries' in object) {
     const newPatient: NewPatient = {
       name: parseName(object.name),
       dateOfBirth: parseDateOfBirth(object.dateOfBirth),
       ssn: parseSSN(object.ssn),
       gender: parseGender(object.gender),
       occupation: parseOccupation(object.occupation),
-      entries: []
+      entries: object.entries as Entry[],
     };
 
     return newPatient;
