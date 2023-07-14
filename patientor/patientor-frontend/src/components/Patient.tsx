@@ -1,15 +1,15 @@
-import { Patient } from "../types";
+import {  Patient } from "../types";
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { apiBaseUrl } from "../constants";
+import EntryView from "./Entry";
 
 const PatientView = () => {
 
   const { id } = useParams<{ id: string }>();
   const [patient, setPatient] = useState<Patient | null>(null);
 
-  //TODO: Move axios call into services/patients.ts
   useEffect(() => {
     const fetchPatient = async () => {
       try {
@@ -29,10 +29,14 @@ const PatientView = () => {
         <h2>{patient.name}</h2>
         <div>
           <ul>
-            <li>{patient.ssn}</li>
-            <li>{patient.gender}</li>
-            <li>{patient.dateOfBirth}</li>
-            <li>{patient.occupation}</li>
+            <li>ssn: {patient.ssn}</li>
+            <li>gender: {patient.gender}</li>
+            <li>dob: {patient.dateOfBirth}</li>
+            <li>occupation: {patient.occupation}</li>
+          </ul>
+          <h2>entries</h2>
+          <EntryView entries={patient.entries} />
+          <ul>
           </ul>
         </div>
       </div>
